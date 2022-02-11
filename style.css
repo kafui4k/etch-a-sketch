@@ -3,19 +3,28 @@ body {
     padding: 0;
 }
 
-#container {
+.flex-container {
     margin: 0 auto;
     max-width: 600px;
+    text-align: center;
 }
 
-/* .row {
-    border: 1px solid black;
-} */
+#container {
+    padding: 8px;
+    grid-gap: 1em;
+}
 
 .cell {
     border: 1px solid lightsalmon;
-    min-width: 30px;
-    min-height: 20px;
+    padding: 1.5em;
     display: inline-block;
     margin-right: 2px;
+}
+
+.cleargrid {
+    font-size: 32px;
+    padding: 8px;
+    border-radius: 10px;
+    background-color:#0a0a23;
+    color: white;
 }

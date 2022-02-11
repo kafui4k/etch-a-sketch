@@ -1,30 +1,51 @@
 // some CONSTANTS to work with
 const container = document.getElementById("container");
-let rows = document.getElementsByClassName("row");
-let cells = document.getElementsByClassName("cell");
+const clearButton = document.querySelector(".cleargrid");
+const DEFAULT_GRID_SIZE = 10;
 
-function createGrid() {
-    makeRows(16);
-    makeColumns(16);
-}
+let newGridSize;
+let color = "black";
 
-// to create Rows
-function makeRows(rowNum) {
-    for (r = 0; r < rowNum; r++) {
-        let row = document.createElement("div");
-        container.appendChild(row).className = "row";
+// generate defaultGrid
+function makeGrid(gridSize) {
+    let totalGridArea = gridSize * gridSize;
+
+    for (let i = 0; i < totalGridArea; i++) {
+        let cellGrid = document.createElement("div");
+        // div.classList.add('cell');
+
+        // mouseover effect
+        cellGrid.addEventListener("mouseover", function(e) {
+            e.target.style.backgroundColor = color
+        })
+
+        container.appendChild(cellGrid).className = "cell";
     }
 }
 
-// to create Columns
-function makeColumns(cellNum) {
-    for (i = 0; i < rows.length; i++) {
-        for (j = 0; j < cellNum; j++) {
-            let newCell = document.createElement("div");
-            rows[j].appendChild(newCell).className = "cell";
-        }
-    }
+// clear grid
+function clearGrid() {
+    let gridItems = container.querySelectorAll("div");
+
+    gridItems.forEach(gridItem => gridItem.style.backgroundColor = "#fff")
+
+    newGridSize = Number(prompt(`Enter Grid Size\nInput max of 1 - 99 only.`));
+
+    gridSize(newGridSize);
 }
+
+// generate new Grid window
+function gridSize(newGridSize) {
+    let gridItems = container.querySelectorAll("div");
+
+    gridItems.forEach(gridItem => gridItem.remove());
+
+    // create the new grid
+    makeGrid(newGridSize);
+}
+
+// Event Listeners
+clearButton.addEventListener("click", clearGrid);
 
 // create Grid on function call
-createGrid();
+makeGrid(DEFAULT_GRID_SIZE);
